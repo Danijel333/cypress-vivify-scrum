@@ -1,0 +1,17 @@
+{
+    "general": {
+        "emptyString": "",
+        "whiteSpace": "    ",
+        "name": "someName"
+    },
+    "login": {
+        "invalidEmail": "somemail@mail.com",
+        "emailWithSpace": "some mail@gmail.com",
+        "invalidPassword": "somepassword123",
+        "emailMissingSymbol": "mailgmail.com",
+        "emailMissingDomain": "mail@gmail",
+        "emailMissingUsername": "@gmail.com",
+        "passwordMissingLastChar": "ovojesifra12"
+    },
+    "organization": {}
+}

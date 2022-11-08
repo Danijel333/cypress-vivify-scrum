@@ -1,8 +1,11 @@
 {
     "general": {
         "emptyString": "",
-        "whiteSpace": "    ",
-        "name": "someName"
+        "whiteSpace": "    "
+    },
+    "constants": {
+        "scrumBoard": "scrum_board",
+        "kanbanBoard": "kanban_board"
     },
     "login": {
         "invalidEmail": "somemail@mail.com",

@@ -1,9 +1,9 @@
 ///<reference types= "cypress"/>
 
-import user from "../../../modules/user";
+import user from "../../../modules/api/user";
 
 describe("API login smoke test", () => {
-  it("Login using valid data", () => {
-    user.login({});
+  it("LOGN - 1 - Login using valid data", () => {
+    user.login({ testMessage: Cypress.currentTest.title });
   });
 });

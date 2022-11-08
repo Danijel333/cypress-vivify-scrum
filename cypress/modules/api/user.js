@@ -1,9 +1,11 @@
+import apiValidation from "../../support/helper/apiValidation";
+
 module.exports = {
   login({
     email = Cypress.env("email"),
     password = Cypress.env("password"),
     statusCode = 200,
-    statusMessage = "OK",
+    testMessage = "",
   }) {
     return cy
       .request({
@@ -17,8 +19,8 @@ module.exports = {
       })
       .then((response) => {
         window.localStorage.setItem("token", response.body.token);
-        expect(response.status).eql(statusCode);
-        expect(response.statusText).eql(statusMessage);
+        apiValidation.validation(response, statusCode, testMessage);
+        return response.body;
       });
   },
 };

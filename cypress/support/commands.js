@@ -23,3 +23,25 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// -- function for logging in using backend an session --
+
+Cypress.Commands.add("sessionLogin", (email, password) => {
+  cy.session("pera@peric.com", () => {
+    cy.request({
+      failOnStatusCode: false,
+      method: "POST",
+      url: `${Cypress.env("baseAPI")}login`,
+      body: {
+        email: email,
+        password: password,
+      },
+    })
+      .its("body")
+      .then((response) => {
+        window.localStorage.setItem("user_id", response.user.id);
+        window.localStorage.setItem("user", JSON.stringify(response.user));
+        window.localStorage.setItem("token", response.token);
+      });
+  });
+});

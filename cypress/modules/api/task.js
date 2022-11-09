@@ -1,13 +1,12 @@
-import testData from "../../fixtures/testData.json";
-import color from "../../support/helper/consoleColor";
+import generator from "../../support/helper/generator";
+import apiValidation from "../../support/helper/apiValidation";
 
 module.exports = {
-  create({
-    name = testData.general.name,
+  post({
+    name = generator.randomStringFourDigits(),
     sprint_id = null,
     boardId,
     statusCode = 201,
-    statusText = "Created",
     isOnSprint = true,
     testMessage = "",
   }) {
@@ -18,8 +17,6 @@ module.exports = {
         url: `${Cypress.env("baseAPI")}tasks`,
         headers: {
           Authorization: "Bearer " + window.localStorage.getItem("token"),
-          Accept: "application/json",
-          "Content-Type": "application/json",
         },
         body: {
           board_id: boardId,
@@ -32,10 +29,21 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
-        expect(response.status).to.eql(statusCode);
+        apiValidation.validation(response, statusCode, testMessage);
+        return response.body;
+      });
+  },
+  get({ taskId, statusCode = 200, testMessage }) {
+    return cy
+      .request({
+        method: "GET",
+        url: `${Cypress.env("baseAPI")}tasks/${taskId}`,
+        headers: {
+          Authorization: "Bearer " + window.localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        apiValidation(response, statusCode, testMessage);
         return response.body;
       });
   },

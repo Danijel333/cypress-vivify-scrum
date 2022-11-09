@@ -6,7 +6,6 @@ module.exports = {
     title = testData.general.name,
     taskId,
     statusCode = 201,
-    statusText = "Created",
     testMessage,
   }) {
     return cy

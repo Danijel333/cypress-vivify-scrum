@@ -34,7 +34,7 @@ module.exports = {
       .request({
         failOnStatusCode: false,
         method: "GET",
-        url: `${Cypress.env("baseAPI") + "boards/" + boardId}`,
+        url: `${Cypress.env("baseAPI")}boards/${boardId}`,
         headers: {
           Authorization: "Bearer " + window.localStorage.getItem("token"),
         },
@@ -48,14 +48,14 @@ module.exports = {
     boardId,
     name = generator.randomStringFourDigits(),
     description = generator.randomString(),
-    code = "DAJA",
+    code = generator.randomStringFourDigits(),
     statusCode = 200,
     testMessage,
   }) {
     cy.request({
       failOnStatusCode: false,
       method: "PUT",
-      url: `${Cypress.env("baseAPI") + "boards/" + boardId}`,
+      url: `${Cypress.env("baseAPI")}boards/${boardId}`,
       headers: {
         Authorization: "Bearer " + window.localStorage.getItem("token"),
       },
@@ -68,5 +68,20 @@ module.exports = {
       apiValidation.validation(response, statusCode, testMessage);
       return response.body;
     });
+  },
+  delete({ boardId, statusCode = 200, testMessage }) {
+    return cy
+      .request({
+        failOnStatusCode: false,
+        method: "DELETE",
+        url: `${Cypress.env("baseAPI")}boards/${boardId}`,
+        headers: {
+          Authorization: "Bearer " + window.localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        apiValidation.validation(response, statusCode, testMessage);
+        return response.body;
+      });
   },
 };

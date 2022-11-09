@@ -1,12 +1,12 @@
 ///<reference types= "cypress"/>
 
-import user from "../../../modules/api/user";
 import organization from "../../../modules/api/organization";
 
 describe("API organization smoke test", () => {
   let organizationId = "";
+
   beforeEach("User log in", () => {
-    user.login({});
+    cy.sessionLogin(Cypress.env("email"), Cypress.env("password"));
   });
 
   it("ORG_CRUD - 1 - Create organization", () => {

@@ -7,18 +7,21 @@ import task from "../../../modules/api/task";
 
 describe("API task smoke test", () => {
   let boardId;
-  before("User login, create organization and board", () => {
-    user.login({}).then(() => {
-      organization.create({}).then((organization) => {
-        board.create({ organizationId: organization.body.id }).then((board) => {
-          boardId = board.body.id;
-        });
+  let taskId;
+  beforeEach("User log in", () => {
+    cy.sessionLogin(Cypress.env("email"), Cypress.env("password"));
+  });
+
+  it("0 - create test data", () => {
+    organization.post({}).then((organization) => {
+      board.post({ organizationId: organization.id }).then((board) => {
+        boardId = board.id;
       });
     });
   });
 
-  it("CRTSK - 1 - Crate task with valid data", () => {
-    task.create({
+  it("TSK_CRUD - 1 - Crate task with valid data", () => {
+    task.post({
       boardId: boardId,
       testMessage: Cypress.currentTest.title,
     });

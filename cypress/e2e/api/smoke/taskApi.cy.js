@@ -1,6 +1,5 @@
 ///<reference types= "cypress"/>
 
-import user from "../../../modules/api/user";
 import organization from "../../../modules/api/organization";
 import board from "../../../modules/api/board";
 import task from "../../../modules/api/task";

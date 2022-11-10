@@ -45,3 +45,8 @@ Cypress.Commands.add("sessionLogin", (email, password) => {
       });
   });
 });
+
+// -- function that walidates page url--
+Cypress.Commands.add("validatePageUrl", (matchingString) => {
+  cy.url().should("include", matchingString);
+});

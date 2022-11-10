@@ -8,7 +8,11 @@ describe("UI - board CRUD", () => {
     cy.visit("");
   });
 
-  it("BRD-UI-CRUD - 1 - Create board", () => {
+  it("BRD-UI-CRUD - 1 - Create scrum board", () => {
     board.createScrumBoard(generator.randomStringFourDigits());
+  });
+
+  it("BRD-UI-CRUD - 2 - Create kanban board", () => {
+    board.createKanbanBoard(generator.randomStringFourDigits());
   });
 });

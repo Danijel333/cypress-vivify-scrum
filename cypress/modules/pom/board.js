@@ -37,15 +37,29 @@ module.exports = {
   createScrumBoard(boardName) {
     this.addNewButton.click();
     this.addNewBoardButton.click();
+    this.nextButton.should("be.disabled");
     this.openDropDownMenu.click();
     this.selectItemFromDropDown.click();
     this.boardNameInput.type(boardName);
     this.nextButton.click();
     this.radioTypeScrum.click();
     this.nextButton.click();
+    this.nextButton.click();
+    this.nextButton.click();
+    this.nextButton.click();
+  },
+
+  createKanbanBoard(boardName) {
+    this.addNewButton.click();
+    this.addNewBoardButton.click();
     this.openDropDownMenu.click();
     this.selectItemFromDropDown.click();
-    this.openDropDownMenu.click();
-    this.selectItemFromDropDown.click();
+    this.boardNameInput.type(boardName);
+    this.nextButton.click();
+    this.radioTypeKanban.click();
+    this.nextButton.click();
+    this.nextButton.click();
+    this.nextButton.click();
+    this.nextButton.click();
   },
 };

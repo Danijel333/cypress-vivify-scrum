@@ -42,6 +42,7 @@ module.exports = {
     this.selectItemFromDropDown.click();
     this.boardNameInput.type(boardName);
     this.nextButton.click();
+    this.nextButton.should("be.disabled");
     this.radioTypeScrum.click();
     this.nextButton.click();
     this.nextButton.click();

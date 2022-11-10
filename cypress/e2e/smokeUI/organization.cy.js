@@ -1,3 +1,5 @@
+///<reference types= "cypress"/>
+
 import generator from "../../support/helper/generator";
 import organization from "../../modules/pom/organization";
 

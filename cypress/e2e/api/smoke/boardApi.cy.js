@@ -5,6 +5,7 @@ import organization from "../../../modules/api/organization";
 import board from "../../../modules/api/board";
 
 describe("API board smoke test", () => {
+  // ovo je neki koment
   let organizationId = "";
   let boardId = "";
   beforeEach("User log in", () => {
